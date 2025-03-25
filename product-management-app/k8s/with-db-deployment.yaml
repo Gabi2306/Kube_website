@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-app-with-db
+spec:
+  selector:
+    matchLabels:
+      app: product-app-with-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: product-app-with-db
+    spec:
+      containers:
+      - name: product-app-with-db
+        image: product-app-with-db:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: MONGODB_URI
+          value: "mongodb://mongodb-service:27017/productdb"
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-app-with-db-service
+spec:
+  selector:
+    app: product-app-with-db
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: NodePort
+

@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: product-app-ingress
+  name: product-app-with-db-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: product-app.local
+  - host: product-with-db.local
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: product-app-service
+            name: product-app-with-db-service
             port:
               number: 80
 
