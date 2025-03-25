@@ -1,0 +1,16 @@
+{
+    "name": "product-management-app",
+    "version": "1.0.0",
+    "description": "Simple product management application",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "mongoose": "^7.5.0",
+      "body-parser": "^1.20.2"
+    }
+  }
+  
+  
